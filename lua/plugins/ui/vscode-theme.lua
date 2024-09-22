@@ -7,8 +7,8 @@ require('vscode').setup({
   style = 'dark',
 
   -- Enable transparent background
-  transparent = true,
-  terminal_colors = false,
+  transparent = false,
+  terminal_colors = true,
 
   -- Enable italic comment
   italic_comments = true,
@@ -17,7 +17,7 @@ require('vscode').setup({
   underline_links = true,
 
   -- Disable nvim-tree background color
-  disable_nvimtree_bg = true,
+  disable_nvimtree_bg = false,
 
   -- Override colors (see ./lua/vscode/colors.lua)
   color_overrides = {

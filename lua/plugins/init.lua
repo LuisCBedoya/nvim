@@ -50,28 +50,6 @@ local plugins = {
       require('plugins.ui.autopairs')
     end,
   },
-  --- ui.neoscroll
-  {
-    'karb94/neoscroll.nvim',
-    config = function()
-      require('plugins.ui.neoscroll')
-    end,
-  },
-  --- ui.statuscol
-  {
-    'luukvbaal/statuscol.nvim',
-    config = function()
-      require('plugins.ui.statuscol')
-    end,
-  },
-  -- -- fix statuscol
-  {
-    'kevinhwang91/nvim-ufo',
-    dependencies = 'kevinhwang91/promise-async',
-    config = function()
-      require('plugins.ui.ufo')
-    end,
-  },
   --- ui.colorizer
   {
     'norcalli/nvim-colorizer.lua',
@@ -140,23 +118,6 @@ local plugins = {
     end,
   },
   { 'nvim-lua/plenary.nvim' },
-  --- ui.cmdline
-  {
-    'rcarriga/nvim-notify',
-    config = function()
-      require('plugins.ui.notify')
-    end,
-  },
-  {
-    'folke/noice.nvim',
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-    },
-    event = 'BufWinEnter',
-    config = function()
-      require('plugins.ui.noice')
-    end,
-  },
   --- ui.treesitter
   {
     'nvim-treesitter/nvim-treesitter',

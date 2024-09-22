@@ -11,7 +11,7 @@
 -- }
 
 local servers = {
-  'tsserver', -- js
+  'ts_ls', -- js
   'emmet_ls', -- html
   'lua_ls', -- lua
   'cssls', --css
