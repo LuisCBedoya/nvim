@@ -1,0 +1,49 @@
+[general]
+import = [ "~/.config/alacritty/colorshemes/monochromatic.conf" ]
+live_config_reload = true
+
+[terminal]
+#shell = { program = "C:/Program Files/Git/bin/bash.exe", args = ["--login", "-i"] }
+# args                  = [ "--login", ]
+
+[cursor]
+style.shape = "Block"
+style.blinking = "off"
+thickness = 0.3
+
+[cursor.vi_mode_style]
+blinking = "Never"
+shape = "Beam"
+
+[font]
+size = 12
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[window]
+opacity = 1.0
+decorations = "full"
+
+[window.padding]
+x = 0
+y = 0
+
+[keyboard]
+bindings = [
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+  { key = "+", mods = "Control", action = "IncreaseFontSize" },
+  { key = "-", mods = "Control", action = "DecreaseFontSize" },
+  { key = "U", mods = "Control|Shift", action = "ScrollPageUp" },
+  { key = "D", mods = "Control|Shift", action = "ScrollPageDown" },
+]
