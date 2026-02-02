@@ -26,6 +26,8 @@ keymap('n', '<leader>Q', '<cmd>w<CR><cmd>q<CR>')
 keymap('i', 'jk', '<ESC>', opts)
 keymap('n', 'J', '}', opts)
 keymap('n', 'K', '{', opts)
+keymap('i', '<A-BS>', '<C-w>')
+keymap('i', '<C-BS>', '<C-w>')
 
 keymap('n', '<leader>j', 'J', opts)
 keymap('v', '<leader>j', 'J', opts)
