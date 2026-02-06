@@ -1,37 +1,35 @@
-local palette = require('theme.ples.palette')
+local colors = {}
 
-local ples_lualine = {}
-
-ples_lualine.normal = {
-  a = { fg = palette.editor_bg, bg = palette.cyan, gui = 'bold' }, -- background2 -> black, teal1 -> cyan
-  b = { fg = palette.light_gray, bg = palette.status_bar }, -- text -> white, background1 -> gray1
-  c = { fg = palette.light_gray, bg = palette.none }, -- blueGray1 -> light_gray
+colors.normal = {
+  a = { fg = '#1b1e28', bg = '#5DE4c7', gui = 'bold' },
+  b = { fg = '#a6accd', bg = '#121212' },
+  c = { fg = '#a6accd', bg = 'NONE' },
 }
 
-ples_lualine.insert = {
-  a = { fg = palette.editor_bg, bg = palette.light_blue, gui = 'bold' }, -- background2 -> black, blue1 -> light_blue
-  b = { fg = palette.white, bg = palette.gray1 }, -- text -> white, background1 -> gray1
+colors.insert = {
+  a = { fg = '#1b1e28', bg = '#89ddff', gui = 'bold' },
+  b = { fg = '#e4f0fb', bg = '#121212' },
 }
 
-ples_lualine.visual = {
-  a = { fg = palette.editor_bg, bg = palette.yellow, gui = 'bold' }, -- background2 -> black
-  b = { fg = palette.white, bg = palette.gray1 }, -- text -> white, background1 -> gray1
+colors.visual = {
+  a = { fg = '#1b1e28', bg = '#fffac2', gui = 'bold' },
+  b = { fg = '#e4f0fb', bg = '#121212' },
 }
 
-ples_lualine.replace = {
-  a = { fg = palette.editor_bg, bg = palette.pink, gui = 'bold' }, -- background2 -> black, pink3 -> pink
-  b = { fg = palette.white, bg = palette.gray1 }, -- text -> white, background1 -> gray1
+colors.replace = {
+  a = { fg = '#1b1e28', bg = '#d0679d', gui = 'bold' },
+  b = { fg = '#e4f0fb', bg = '#121212' },
 }
 
-ples_lualine.command = {
-  a = { fg = palette.editor_bg, bg = palette.yellow, gui = 'bold' }, -- background2 -> black
-  b = { fg = palette.white, bg = palette.gray1 }, -- text -> white, background1 -> gray1
+colors.command = {
+  a = { fg = '#1b1e28', bg = '#fffac2', gui = 'bold' },
+  b = { fg = '#e4f0fb', bg = '#121212' },
 }
 
-ples_lualine.inactive = {
-  a = { fg = palette.dark_gray, bg = palette.gray1, gui = 'bold' }, -- blueGray3 -> dark_gray, background1 -> gray1
-  b = { fg = palette.dark_gray, bg = palette.gray1 }, -- blueGray3 -> dark_gray
-  c = { fg = palette.dark_gray, bg = palette.none }, -- blueGray3 -> dark_gray
+colors.inactive = {
+  a = { fg = '#767c9d', bg = '#121212', gui = 'bold' },
+  b = { fg = '#767c9d', bg = '#121212' },
+  c = { fg = '#767c9d', bg = 'NONE' },
 }
 
-return ples_lualine
+return colors
