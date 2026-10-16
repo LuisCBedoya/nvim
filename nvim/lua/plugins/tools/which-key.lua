@@ -1,5 +1,14 @@
 local wk = require('which-key')
 
+-- Grupos (categorías): una sola fuente de verdad, usada por `wk.add` y por el filtro.
+local GROUPS = {
+  { '<leader>a', 'LSP / Código' },
+  { '<leader>c', 'Comments' },
+  { '<leader>f', 'Telescope' },
+  { '<leader>g', 'Git' },
+  { '<leader>t', 'Toggles' },
+}
+
 -- Conjunto de descripciones PROPIAS: filtra el popup para mostrar SOLO
 -- tus keymaps (los registrados en config/keymaps.lua), no los de plugins.
 local function build_desc_set()
@@ -12,9 +21,8 @@ local function build_desc_set()
       end
     end
   end
-  -- Nombres de los grupos (categorías) del Cheat Sheet
-  for _, g in ipairs({ 'LSP / Código', 'Comments', 'Telescope', 'Toggles' }) do
-    set[g] = true
+  for _, g in ipairs(GROUPS) do
+    set[g[2]] = true
   end
   return set
 end
@@ -49,9 +57,9 @@ wk.setup({
   end,
 })
 
-wk.add({
-  { '<leader>a', group = 'LSP / Código' },
-  { '<leader>c', group = 'Comments' },
-  { '<leader>f', group = 'Telescope' },
-  { '<leader>t', group = 'Toggles' },
-})
+-- Registrar los grupos (categorías) en which-key
+local group_specs = {}
+for _, g in ipairs(GROUPS) do
+  group_specs[#group_specs + 1] = { g[1], group = g[2] }
+end
+wk.add(group_specs)

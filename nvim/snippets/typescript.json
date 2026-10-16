@@ -1,0 +1,42 @@
+{
+  "interface": {
+    "prefix": ["int", "interface"],
+    "body": ["interface ${1:Name} {", "  ${2:prop}: ${3:string}", "}"],
+    "description": "Interface de TypeScript"
+  },
+  "type alias": {
+    "prefix": ["type"],
+    "body": ["type ${1:Name} = ${2:string}"],
+    "description": "Alias de tipo"
+  },
+  "typed function": {
+    "prefix": ["fn", "func"],
+    "body": ["function ${1:name}(${2:args}): ${3:void} {", "  $0", "}"],
+    "description": "Función tipada"
+  },
+  "async typed function": {
+    "prefix": ["asf"],
+    "body": ["async function ${1:name}(${2:args}): Promise<${3:void}> {", "  $0", "}"],
+    "description": "Función async tipada"
+  },
+  "enum": {
+    "prefix": ["enum"],
+    "body": ["enum ${1:Name} {", "  ${2:Member},", "}"],
+    "description": "Enum"
+  },
+  "Promise": {
+    "prefix": ["prom"],
+    "body": ["new Promise<${1:void}>((resolve, reject) => {", "  $0", "})"],
+    "description": "Constructor de Promise"
+  },
+  "type guard": {
+    "prefix": ["guard"],
+    "body": ["function is${1:Type}(value: unknown): value is ${1:Type} {", "  return $0", "}"],
+    "description": "Type guard"
+  },
+  "readonly property": {
+    "prefix": ["ro"],
+    "body": ["readonly ${1:name}: ${2:string}"],
+    "description": "Propiedad readonly"
+  }
+}

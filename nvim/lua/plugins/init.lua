@@ -255,6 +255,33 @@ local plugins = {
       require('plugins.tools.which-key')
     end,
   },
+  --tools.toggleterm
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    lazy = false,
+    config = function()
+      require('plugins.tools.toggleterm')
+    end,
+  },
+  --tools.diffview
+  {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewClose' },
+    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('plugins.tools.diffview')
+    end,
+  },
+  --tools.gitgraph
+  {
+    'isakbm/gitgraph.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
+    cmd = 'GitGraph',
+    config = function()
+      require('plugins.tools.gitgraph')
+    end,
+  },
   -- SECTION: SNIPPETS  #######################################################################
   {
     'L3MON4D3/LuaSnip',

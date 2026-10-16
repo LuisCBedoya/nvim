@@ -1,0 +1,42 @@
+{
+  "local function": {
+    "prefix": ["lfn"],
+    "body": ["local function ${1:name}(${2:args})", "  $0", "end"],
+    "description": "Función local"
+  },
+  "module function": {
+    "prefix": ["mfn"],
+    "body": ["function M.${1:name}(${2:args})", "  $0", "end"],
+    "description": "Función de módulo (M.name)"
+  },
+  "if then": {
+    "prefix": ["if"],
+    "body": ["if ${1:condition} then", "  $0", "end"],
+    "description": "Bloque if"
+  },
+  "for ipairs": {
+    "prefix": ["fori"],
+    "body": ["for _, ${1:item} in ipairs(${2:list}) do", "  $0", "end"],
+    "description": "Bucle for con ipairs"
+  },
+  "for pairs": {
+    "prefix": ["forp"],
+    "body": ["for ${1:key}, ${2:value} in pairs(${3:table}) do", "  $0", "end"],
+    "description": "Bucle for con pairs"
+  },
+  "vim.keymap.set": {
+    "prefix": ["kmap"],
+    "body": ["vim.keymap.set('${1:n}', '${2:lhs}', ${3:rhs}, { desc = '${4:desc}' })"],
+    "description": "vim.keymap.set con descripción"
+  },
+  "return module": {
+    "prefix": ["mod"],
+    "body": ["local M = {}", "", "$0", "", "return M"],
+    "description": "Módulo Lua con tabla M"
+  },
+  "vim.notify": {
+    "prefix": ["notify"],
+    "body": ["vim.notify('${1:mensaje}', vim.log.levels.${2:INFO})"],
+    "description": "vim.notify"
+  }
+}

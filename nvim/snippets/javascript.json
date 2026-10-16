@@ -1,0 +1,52 @@
+{
+  "console.log": {
+    "prefix": ["clg", "log"],
+    "body": ["console.log($1)$0"],
+    "description": "console.log"
+  },
+  "Arrow function (const)": {
+    "prefix": ["af", "arf"],
+    "body": ["const ${1:name} = (${2:args}) => {", "  $0", "}"],
+    "description": "Función flecha asignada a const"
+  },
+  "Function declaration": {
+    "prefix": ["fn", "func"],
+    "body": ["function ${1:name}(${2:args}) {", "  $0", "}"],
+    "description": "Declaración de función"
+  },
+  "Async function": {
+    "prefix": ["asf"],
+    "body": ["async function ${1:name}(${2:args}) {", "  $0", "}"],
+    "description": "Función async"
+  },
+  "require (CommonJS)": {
+    "prefix": ["req"],
+    "body": ["const ${1:module} = require('${2:module}')"],
+    "description": "require de CommonJS"
+  },
+  "import (ESM)": {
+    "prefix": ["imp"],
+    "body": ["import ${1:name} from '${2:module}'"],
+    "description": "Import de ES module"
+  },
+  "export default": {
+    "prefix": ["expd"],
+    "body": ["export default ${1:thing}"],
+    "description": "Export default"
+  },
+  "if statement": {
+    "prefix": ["if"],
+    "body": ["if (${1:condition}) {", "  $0", "}"],
+    "description": "Bloque if"
+  },
+  "for..of": {
+    "prefix": ["fof"],
+    "body": ["for (const ${1:item} of ${2:list}) {", "  $0", "}"],
+    "description": "Bucle for..of"
+  },
+  "try..catch": {
+    "prefix": ["try"],
+    "body": ["try {", "  $1", "} catch (error) {", "  $0", "}"],
+    "description": "Bloque try/catch"
+  }
+}

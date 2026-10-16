@@ -240,6 +240,36 @@ section('Tools · Snipe')
 -- [snipe] Abrir el menú de buffers (salto rápido)
 map('n', '<S-u>', ':lua require("snipe").open_buffer_menu()<CR>', 'Menú de buffers')
 
+-- ── Terminal (toggleterm) ─────────────────────────────────────────
+section('Tools · Terminal')
+
+-- [toggleterm] Abrir/cerrar terminal flotante
+map('n', '<leader>tt', '<cmd>ToggleTerm<CR>', 'Terminal flotante')
+
+-- [toggleterm] Terminal horizontal (abajo)
+map('n', '<leader>th', '<cmd>ToggleTerm direction=horizontal<CR>', 'Terminal horizontal')
+
+-- [toggleterm] Terminal vertical (derecha)
+map('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical<CR>', 'Terminal vertical')
+
+-- ── Git (diffview / gitgraph) ─────────────────────────────────────
+section('Git')
+
+-- [diffview] Diff del working tree (cambios sin commitear)
+map('n', '<leader>gd', '<cmd>DiffviewOpen<CR>', 'Diff del working tree')
+
+-- [diffview] Historial del archivo actual
+map('n', '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', 'Historial del archivo')
+
+-- [diffview] Historial del repo completo
+map('n', '<leader>gH', '<cmd>DiffviewFileHistory<CR>', 'Historial del repo')
+
+-- [diffview] Cerrar el diffview
+map('n', '<leader>gq', '<cmd>DiffviewClose<CR>', 'Cerrar diffview')
+
+-- [gitgraph] Grafo de commits (abre en split vertical, a la derecha)
+map('n', '<leader>gG', '<cmd>GitGraph<CR>', 'Grafo de commits (gitgraph)')
+
 -- ═══════════════════════════════════════════════════════════════════
 -- AYUDA
 -- ═══════════════════════════════════════════════════════════════════

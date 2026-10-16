@@ -1,6 +1,8 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
-require('luasnip.loaders.from_vscode').lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load({
+  paths = { vim.fn.stdpath('config') .. '/snippets' },
+})
 local cmp_cmdlinnes_mapping = {
   ['<CR>'] = cmp.mapping.confirm({ select = true }),
   ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
