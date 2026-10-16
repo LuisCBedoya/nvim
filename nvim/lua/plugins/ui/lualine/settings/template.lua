@@ -153,7 +153,7 @@ M.roundedall = function()
   local mode = component.mode_roundedall
   return {
     options = {
-      theme = colorscheme,
+      theme = theme_ples_lualine,
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
       disabled_filetypes = M.filetype,
@@ -188,7 +188,7 @@ M.triangle = function()
   local mode = component.mode_triangle
   return {
     options = {
-      theme = colorscheme,
+      theme = theme_ples_lualine,
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
       disabled_filetypes = M.filetype,
@@ -257,7 +257,7 @@ M.square = function()
   local mode = component.mode_square
   return {
     options = {
-      theme = colorscheme,
+      theme = theme_ples_lualine,
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
       disabled_filetypes = M.filetype,

@@ -25,10 +25,10 @@ M.config = {
     color_icons = true,
     numbers = 'none', -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
     close_command = function(bufnum)
-      require('auto-bufferline.configs.utils').bufremove(bufnum)
+      require('plugins.ui.bufferline.settings.utils').bufremove(bufnum)
     end,
     right_mouse_command = function(bufnum)
-      require('auto-bufferline.configs.utils').bufremove(bufnum)
+      require('plugins.ui.bufferline.settings.utils').bufremove(bufnum)
     end,
     left_mouse_command = 'buffer %d',
     middle_mouse_command = nil,

@@ -7,7 +7,6 @@ local hide_in_width = function()
 end
 
 local icons = require('plugins.ui.icons.icons')
-local formatter = require('plugins.ui.lualine.settings.conform_info')
 
 local getLeftSubstring = function(word, length)
   if #word > length then
@@ -170,42 +169,93 @@ return {
 
   -- ######################### lsp_servers, formatters, linters info
   lsp_info = {
-  function()
-    local buf_ft = vim.bo.filetype
-    local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
-    local servers = {}
-
-    -- SERVERS LSP
-    for _, client in pairs(buf_clients) do
-      if client.name ~= 'copilot' then
-        table.insert(servers, '󰦕 ' .. client.name)
+    function()
+      local ft = vim.bo.filetype
+      if ft == '' then
+        return icons.ui.Gear .. ' LSP Inactive'
       end
-    end
 
-    -- LINTERS (solo si están instalados)
-    local lint_ok, lint = pcall(require, 'lint')
-    if lint_ok then
-      local linters_by_ft = lint.linters_by_ft or {}
-      local ft_linters = linters_by_ft[buf_ft] or {}
-      
-      for _, linter_name in ipairs(ft_linters) do
-        -- Verificar si el linter está instalado (ejecutable)
-        local linter = lint.linters[linter_name]
-        if linter and vim.fn.executable(linter.cmd or linter_name) == 1 then
-          table.insert(servers, ' ' .. linter_name)
+      local parts = {}
+
+      -- ########## LSP
+      local lsp_by_ft = {
+        lua = 'lua_ls',
+        html = 'html',
+        css = 'cssls',
+        scss = 'cssls',
+        less = 'cssls',
+        javascript = 'ts_ls',
+        javascriptreact = 'ts_ls',
+        typescript = 'ts_ls',
+        typescriptreact = 'ts_ls',
+        json = 'jsonls',
+        jsonc = 'jsonls',
+        yaml = 'yamlls',
+        markdown = 'marksman',
+        sh = 'bashls',
+        bash = 'bashls',
+      }
+      local active = {}
+      for _, c in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+        active[c.name] = true
+      end
+      local expected = lsp_by_ft[ft]
+      if expected then
+        if active[expected] then
+          table.insert(parts, '󰦕 ' .. expected)
+        else
+          table.insert(parts, '󱄊 Lx')
         end
       end
-    end
+      for name in pairs(active) do
+        if name ~= expected and name ~= 'copilot' then
+          table.insert(parts, '󰦕 ' .. name)
+        end
+      end
 
-    if #servers == 0 then
-      return icons.Gear .. ' LSP Inactive'
-    end
+      -- ########## Formatters
+      local conform_ok, conform = pcall(require, 'conform')
+      if conform_ok then
+        local avail = {}
+        for _, f in ipairs(conform.list_formatters(0)) do
+          if f.available then
+            table.insert(avail, f.name)
+          end
+        end
+        if avail[1] then
+          for _, name in ipairs(avail) do
+            table.insert(parts, '󰦕 ' .. name)
+          end
+        else
+          table.insert(parts, '󱄊 Fx')
+        end
+      end
 
-    return table.concat(servers, ', ')
-  end,
-  padding = 1,
-  cond = hide_in_width,
-},
+      -- ########## Linters
+      local lint_ok, lint = pcall(require, 'lint')
+      if lint_ok then
+        local names = (lint.linters_by_ft or {})[ft] or {}
+        local avail = {}
+        local feedback = require('plugins.core.feedback')
+        for _, name in ipairs(names) do
+          if feedback.linter_installed(lint.linters[name], name) then
+            table.insert(avail, name)
+          end
+        end
+        if avail[1] then
+          for _, name in ipairs(avail) do
+            table.insert(parts, '󰦕 ' .. name)
+          end
+        else
+          table.insert(parts, '󱄊 Ix')
+        end
+      end
+
+      return table.concat(parts, ', ')
+    end,
+    padding = 1,
+    cond = hide_in_width,
+  },
 
   -- ######################### cursorPosition
   cursorPosition = {

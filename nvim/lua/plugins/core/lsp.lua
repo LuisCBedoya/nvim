@@ -1,51 +1,55 @@
 local servers = {
+  'lua_ls',
+  'ts_ls',
+  'emmet_ls',
+  'html',
+  'cssls',
+  'jsonls',
+  'yamlls',
+  'bashls',
+  'marksman',
 }
 
-local server_settings = {
+-- Config por servidor (claves de nivel superior: settings, filetypes, init_options, ...)
+local server_config = {
   lua_ls = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' },
-      },
-      workspace = {
-        checkThirdParty = false,
-        library = vim.api.nvim_get_runtime_file('', true),
-      },
-      telemetry = { enable = false },
-    },
-  },
-
-  basedpyright = {
-    python = {
-      analysis = {
-        typeCheckingMode = 'basic',
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { 'vim' },
+        },
+        workspace = {
+          checkThirdParty = false,
+          library = vim.api.nvim_get_runtime_file('', true),
+        },
+        telemetry = { enable = false },
       },
     },
   },
 
   ts_ls = {
-    typescript = {
-      inlayHints = {
-        includeInlayParameterNameHints = 'all',
-        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
+    settings = {
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
       },
-    },
-    javascript = {
-      inlayHints = {
-        includeInlayParameterNameHints = 'all',
-        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
+      javascript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
       },
     },
   },
@@ -62,21 +66,22 @@ local server_settings = {
   },
 }
 
+-- Instala los servidores vía mason (solo instalación; habilitamos a mano abajo)
 require('mason-lspconfig').setup({
   ensure_installed = servers,
-  automatic_installation = false,
+  automatic_enable = false,
 })
 
-local lspconfig = require('lspconfig')
 local handlers = require('plugins.core.handlers')
 
-require('mason-lspconfig').setup({
-  function(server_name)
-    local opts = {
+-- Configura y habilita cada servidor con el API nativo de Neovim 0.11+
+for _, server_name in ipairs(servers) do
+  vim.lsp.config(
+    server_name,
+    vim.tbl_deep_extend('force', {
       on_attach = handlers.on_attach,
       capabilities = handlers.capabilities,
-      settings = server_settings[server_name] or {},
-    }
-    lspconfig[server_name].setup(opts)
-  end
-})
+    }, server_config[server_name] or {})
+  )
+  vim.lsp.enable(server_name)
+end

@@ -5,7 +5,6 @@ local g = vim.g
 -------------------------------------- options ------------------------------------------
 o.laststatus = 3
 o.showmode = false
-o.updatetime = 300
 -- o.cmdheight = 1
 
 o.clipboard = 'unnamedplus'
@@ -48,7 +47,6 @@ o.updatetime = 250
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append('<>[]hl')
-opt.clipboard = 'unnamedplus'
 
 -- g.mapleader = " "
 

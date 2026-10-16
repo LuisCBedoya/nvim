@@ -1,6 +1,6 @@
 local icons = require('plugins.ui.icons.icons')
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     'git',
     'clone',
@@ -51,7 +51,7 @@ local plugins = {
   },
   --- ui.colorizer
   {
-    'norcalli/nvim-colorizer.lua',
+    'catgoose/nvim-colorizer.lua',
     event = 'BufReadPre',
     config = function()
       require('colorizer').setup()
@@ -74,13 +74,11 @@ local plugins = {
   --- ui.barbecue
   {
     'utilyre/barbecue.nvim',
+    dependencies = { 'SmiteshP/nvim-navic' },
     event = { 'BufEnter', 'FileType' },
     config = function()
       require('plugins.ui.barbecue')
     end,
-  },
-  {
-    'SmiteshP/nvim-navic',
   },
   -- ui.buffernline
   {
@@ -118,7 +116,6 @@ local plugins = {
       -- 5 = icon
       local show_mode = 0
       lualine.setup({
-        setColor = color,
         setOption = options,
         setMode = show_mode,
       })
@@ -142,7 +139,9 @@ local plugins = {
   --- ui.treesitter
   {
     'nvim-treesitter/nvim-treesitter',
-    event = { 'BufRead', 'BufNewFile' },
+    branch = 'main',
+    build = ':TSUpdate',
+    lazy = false,
     config = function()
       require('plugins.ui.treesitter')
     end,

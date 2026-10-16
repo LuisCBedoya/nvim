@@ -3,8 +3,24 @@ local conform = require('conform')
 conform.setup({
   formatters_by_ft = {
     lua = { 'stylua' },
-    yaml = { 'prettierd', 'prettier' },
     toml = { 'taplo' },
+    -- Prettier (Mason)
+    html = { 'prettierd', 'prettier' },
+    css = { 'prettierd', 'prettier' },
+    scss = { 'prettierd', 'prettier' },
+    less = { 'prettierd', 'prettier' },
+    javascript = { 'prettierd', 'prettier' },
+    javascriptreact = { 'prettierd', 'prettier' },
+    typescript = { 'prettierd', 'prettier' },
+    typescriptreact = { 'prettierd', 'prettier' },
+    json = { 'prettierd', 'prettier' },
+    jsonc = { 'prettierd', 'prettier' },
+    yaml = { 'prettierd', 'prettier' },
+    markdown = { 'prettierd', 'prettier' },
+    graphql = { 'prettierd', 'prettier' },
+    -- Shell
+    sh = { 'shfmt' },
+    bash = { 'shfmt' },
   },
 
   formatters = {
@@ -34,9 +50,8 @@ conform.setup({
     lsp_format = 'fallback',
   },
 
-  -- format_on_save = false,
-
-  -- Opcional: Notificaciones
+  -- Avisos
   notify_on_error = true,
+  notify_no_formatters = true,
   log_level = vim.log.levels.WARN,
 })

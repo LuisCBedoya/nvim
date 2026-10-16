@@ -23,10 +23,6 @@ autocmd({ 'UIEnter', 'BufReadPost', 'BufNewFile' }, {
 
       vim.schedule(function()
         vim.api.nvim_exec_autocmds('FileType', {})
-
-        if vim.g.editorconfig then
-          require('editorconfig').config(args.buf)
-        end
       end)
     end
   end,
@@ -38,11 +34,5 @@ vim.api.nvim_create_autocmd('VimEnter', {
     vim.defer_fn(function()
       require('lazy').check({ show = false })
     end, 100) -- delay en milisegundos
-  end,
-})
-
-vim.api.nvim_create_autocmd('BufEnter', {
-  callback = function()
-    vim.opt_local.winbar = nil
   end,
 })

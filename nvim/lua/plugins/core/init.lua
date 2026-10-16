@@ -2,7 +2,7 @@ local M = {}
 
 -- Función para mostrar capacidades de clientes LSP activos
 M.server_capabilities = function()
-  local active_clients = vim.lsp.get_active_clients()
+  local active_clients = vim.lsp.get_clients()
   local active_client_map = {}
 
   for index, value in ipairs(active_clients) do
@@ -16,7 +16,7 @@ M.server_capabilities = function()
     end,
   }, function(choice)
     if choice then
-      local client = vim.lsp.get_active_clients()[active_client_map[choice]]
+      local client = vim.lsp.get_clients()[active_client_map[choice]]
       print(vim.inspect(client.server_capabilities.executeCommandProvider))
       vim.pretty_print(client.server_capabilities)
     end

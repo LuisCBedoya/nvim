@@ -20,7 +20,6 @@ require('nvim-tree').setup({
   on_attach = 'default',
   select_prompts = false,
   view = {
-    adaptive_size = false,
     centralize_selection = true,
     width = 33,
     cursorline = true,
@@ -69,8 +68,6 @@ require('nvim-tree').setup({
       -- },
     },
     icons = {
-      webdev_colors = true,
-
       web_devicons = {
         file = {
           enable = true,
@@ -82,7 +79,6 @@ require('nvim-tree').setup({
         },
       },
       git_placement = 'before',
-      padding = ' ',
       symlink_arrow = ' ➛ ',
       modified_placement = 'after',
       diagnostics_placement = 'signcolumn',
@@ -259,10 +255,6 @@ require('nvim-tree').setup({
       watcher = false,
     },
   },
-  system_open = {
-    cmd = nil,
-    args = {},
-  },
 })
 
 vim.o.confirm = true
@@ -272,7 +264,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     local layout = vim.api.nvim_call_function('winlayout', {})
     if
       layout[1] == 'leaf'
-      and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), 'filetype') == 'NvimTree'
+      and vim.bo[vim.api.nvim_win_get_buf(layout[2])].filetype == 'NvimTree'
       and layout[3] == nil
     then
       vim.cmd('quit')

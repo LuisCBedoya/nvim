@@ -69,40 +69,6 @@ cmp.setup({
     }),
   },
 
-  -- Configuración para búsqueda con '/'
-  cmp.setup.cmdline('/', {
-    preselect = 'none',
-    completion = {
-      completeopt = 'menu,preview,menuone,noselect',
-    },
-    mapping = cmp_cmdlinnes_mapping,
-    sources = {
-      { name = 'buffer' },
-    },
-    experimental = {
-      ghost_text = true,
-      native_menu = false,
-    },
-  }),
-
-  -- Configuración para comandos con ':'
-  cmp.setup.cmdline(':', {
-    preselect = 'none',
-    completion = {
-      completeopt = 'menu,preview,menuone,noselect',
-    },
-    mapping = cmp_cmdlinnes_mapping,
-    sources = cmp.config.sources({
-      { name = 'path' },
-    }, {
-      { name = 'cmdline' },
-    }),
-    experimental = {
-      ghost_text = true,
-      native_menu = false,
-    },
-  }),
-
   formatting = {
     fields = { 'kind', 'abbr', 'menu' }, -- Orden: icono, texto, fuente
     format = function(entry, vim_item)
@@ -172,6 +138,40 @@ cmp.setup({
       cmp.config.compare.length,
       cmp.config.compare.order,
     },
+  },
+})
+
+-- Configuración para búsqueda con '/'
+cmp.setup.cmdline('/', {
+  preselect = 'none',
+  completion = {
+    completeopt = 'menu,preview,menuone,noselect',
+  },
+  mapping = cmp_cmdlinnes_mapping,
+  sources = {
+    { name = 'buffer' },
+  },
+  experimental = {
+    ghost_text = true,
+    native_menu = false,
+  },
+})
+
+-- Configuración para comandos con ':'
+cmp.setup.cmdline(':', {
+  preselect = 'none',
+  completion = {
+    completeopt = 'menu,preview,menuone,noselect',
+  },
+  mapping = cmp_cmdlinnes_mapping,
+  sources = cmp.config.sources({
+    { name = 'path' },
+  }, {
+    { name = 'cmdline' },
+  }),
+  experimental = {
+    ghost_text = true,
+    native_menu = false,
   },
 })
 
